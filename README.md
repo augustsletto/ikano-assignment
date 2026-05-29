@@ -1,6 +1,13 @@
 # Ikano - Developer Assignment
 A calculation service with Fibonacci, Factorial, and Loan Repayment. Exposed as a REST API with a simple web UI. Built with Python and FastAPI.
 
+
+### Getting Started
+```bash
+git clone https://github.com/augustsletto/ikano-assignment.git
+cd ikano-assignment
+```
+
 ### Install dependencies
 
 ```bash
@@ -23,8 +30,14 @@ Open http://localhost:8000 for the web UI, or http://localhost:8000/docs for the
 
 ### Run with docker
 ```bash
+# make sure docker desktop is running
 docker compose up --build
+
+
 ```
+
+Open http://localhost:8000/
+
 
 ### API Endpoints
 All endpoints accept JSON and return JSON
