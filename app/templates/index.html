@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikano Bank – Calculator</title>
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #ec0000;
+      color: white;
+      padding: 20px 32px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 32px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #222;
+    }
+
+    .fields {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .field input {
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus {
+      border-color: #ec0000;
+    }
+
+    button {
+      background: #ec0000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-end;
+      height: 42px;
+    }
+
+    button:hover { background: #c80000; }
+
+    .result {
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: #fafafa;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+
+    .result:empty { display: none; }
+
+    .error { color: #ec0000; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #ddd;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ec0000;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ec0000;
+  cursor: pointer;
+  border: none;
+}
+
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 0.75rem;
+      color: #999;
+    }
+  </style>
+  </head>
+  <body>
+    <header>Ikano Bank</header>
+
+    <main>
+      <div class="card">
+        <h2>Loan Repayment</h2>
+        <form
+          onsubmit="calc(event, '/loan', {principal: +this.p.value, annual_rate: +this.r.value, months: +this.m.value}, 'loan-res')">
+          <div class="fields"
+            style="flex-direction: column; align-items: stretch;">
+            <div class="field">
+              <label>Lånebelopp (kr)</label>
+              <input type="number" id="p-number" name="p" min="10000"
+                max="350000" step="1000" value="125000"
+                oninput="document.getElementById('p-range').value = this.value">
+              <input type="range" id="p-range" min="10000" max="350000"
+                step="1000" value="125000"
+                oninput="document.getElementById('p-number').value = this.value">
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #999;">
+                <span>10 000 kr</span>
+                <span>350 000 kr</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <div class="field">
+                <label>Årsränta (%)</label>
+                <input type="number" name="r" value="5" min="0" max="100" step="0.1"
+                  required>
+              </div>
+              <div class="field">
+                <label>Återbetalningstid</label>
+                <input type="number" name="m" value="48" min="1" max="600" required>
+              </div>
+              <button type="submit">Calculate</button>
+            </div>
+          </div>
+        </form>
+        <div class="result" id="loan-res"></div>
+      </div>
+
+      <div class="card">
+        <h2>Fibonacci</h2>
+        <form
+          onsubmit="calc(event, '/fibonacci', {fibonacci_integer: +this.n.value}, 'fib-res')">
+          <div class="fields">
+            <div class="field">
+              <label>Number</label>
+              <input type="number" name="n" value="10" min="0" required>
+            </div>
+            <button type="submit">Calculate</button>
+          </div>
+        </form>
+        <div class="result" id="fib-res"></div>
+      </div>
+
+      <div class="card">
+        <h2>Factorial</h2>
+        <form
+          onsubmit="calc(event, '/factorial', {factorial_integer: +this.n.value}, 'fact-res')">
+          <div class="fields">
+            <div class="field">
+              <label>Number</label>
+              <input type="number" name="n" value="5" min="0" required>
+            </div>
+            <button type="submit">Calculate</button>
+          </div>
+        </form>
+        <div class="result" id="fact-res"></div>
+      </div>
+    </main>
+
+    <footer>&copy; 2026 Ikano Bank AB (publ)</footer>
+
+    <script>
+    async function calc(e, url, body, targetId) {
+      e.preventDefault();
+      const el = document.getElementById(targetId);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        el.innerHTML = '<span class="error">' + (data.detail || 'Something went wrong') + '</span>';
+        return;
+      }
+      if (data.result !== undefined) {
+        el.innerHTML = '<strong>Result:</strong> ' + data.result.toLocaleString('sv-SE');
+      } else {
+        el.innerHTML =
+          '<strong>Monthly repayment:</strong> ' + data.monthly_repayment.toLocaleString('sv-SE', {minimumFractionDigits: 2}) + ' kr<br>' +
+          '<strong>Total repayment:</strong> ' + data.total_repayment_amount.toLocaleString('sv-SE', {minimumFractionDigits: 2}) + ' kr<br>' +
+          '<strong>Total interest:</strong> ' + data.total_interest_paid.toLocaleString('sv-SE', {minimumFractionDigits: 2}) + ' kr';
+      }
+    }
+  </script>
+  </body>
+</html>

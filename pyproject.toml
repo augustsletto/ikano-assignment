@@ -1,0 +1,11 @@
+[project]
+name = "ikano-assignment"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.136.3",
+    "pytest>=9.0.3",
+    "python-multipart>=0.0.29",
+]
