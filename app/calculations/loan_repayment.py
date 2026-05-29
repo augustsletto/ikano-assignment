@@ -3,7 +3,7 @@ def loan_repayment(principal: float, annual_rate: float, months: int) -> dict[st
     """
     Loan formula:
         M = P x [ r(1+r)^n / ((1+r)^n - 1) ]
-    Loan fomula in python code:
+    Loan formula in python code:
         M = P * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
         
 
@@ -34,7 +34,7 @@ def loan_repayment(principal: float, annual_rate: float, months: int) -> dict[st
         monthly_repayment = P * (monthly_rate * (1 + monthly_rate) ** months) / ((1 + monthly_rate) ** months - 1)
     
     total_repayment = monthly_repayment * months
-    total_interest= total_repayment - P
+    total_interest = total_repayment - P
     
     
     penny = Decimal("0.01")
