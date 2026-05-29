@@ -3,14 +3,14 @@ from pydantic import BaseModel, Field
 
 
 class FibonacciRequest(BaseModel):
-    fibonacci_integer: int = Field(gt=0, description="Position in the Fibonacci sequence")
+    fibonacci_integer: int = Field(ge=0, description="Position in the Fibonacci sequence")
 
 
 class FibonacciResponse(BaseModel):
     result: int
     
 class FactorialRequest(BaseModel):
-    factorial_integer: int = Field(gt=0, description="Integer to factorial")
+    factorial_integer: int = Field(ge=0, description="Integer to factorial")
 
 
 class FactorialResponse(BaseModel):
