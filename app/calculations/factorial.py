@@ -27,11 +27,3 @@ def factorial(n: int) -> int:
         return 1
     return n * factorial(n-1) # recursive
 
-
-# try:
-#     number = int(input("Enter a non-negative integer: "))
-#     print(f"{number}! = {factorial(number)}")
-
-# except ValueError as e:
-#     print(f"Error: {e}")
-    

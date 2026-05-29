@@ -16,7 +16,6 @@ class FactorialRequest(BaseModel):
 class FactorialResponse(BaseModel):
     result: int
     
-    
 
 
 class LoanRequest(BaseModel):

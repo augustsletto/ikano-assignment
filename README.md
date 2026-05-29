@@ -75,20 +75,23 @@ uv run python -m pytest tests/ -v
 
 ## Project Structure
 ```
-├── fibonacci.py           # Fibonacci calculation (iterative)
-├── factorial.py           # Factorial calculation
-├── loan_repayment.py      # Loan repayment
-├── schemas.py             # Pydantic request/response models
-├── main.py                # FastAPI application and routes
-├── templates/
-│   └── index.html         # Web UI
+├── app/
+│   ├── calculations/
+│   │   ├── fibonacci.py           # Fibonacci calculation (iterative)
+│   │   ├── factorial.py           # Factorial calculation
+│   │   └── loan_repayment.py      # Loan repayment (Decimal-safe)
+│   ├── templates/
+│   │   └── index.html             # Web UI
+│   ├── schemas.py                 # Pydantic request/response models
+│   └── main.py                    # FastAPI application and routes
 ├── tests/
-│   ├── test_fibonacci.py  
+│   ├── test_fibonacci.py
 │   ├── test_factorial.py
 │   └── test_loan.py
 ├── Dockerfile
 ├── compose.yaml
 ├── requirements.txt
+├── pyproject.toml
 └── README.md
 ```
 

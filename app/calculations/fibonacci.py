@@ -31,13 +31,3 @@ def fibonacci(n: int) -> int:
 
     return a
 
-
-# while True:
-#     try:
-#         number = int(input("Enter a non-negative integer: "))
-#         print(f"The {number}th Fibonacci number is: {fibonacci(number)}")
-#         break        
-
-#     except (ValueError, TypeError) as e:
-#         print(f"Error: {e}")
-    

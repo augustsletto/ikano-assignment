@@ -1,5 +1,5 @@
 from decimal import Decimal, ROUND_HALF_UP
-def loan_repayment(principal: float, annual_rate: float, months: int) -> dict[float, float, float]:
+def loan_repayment(principal: float, annual_rate: float, months: int) -> dict[str, float]:
     """
     Loan formula:
         M = P x [ r(1+r)^n / ((1+r)^n - 1) ]
@@ -13,7 +13,7 @@ def loan_repayment(principal: float, annual_rate: float, months: int) -> dict[fl
         months (int): The number of months for repayment.
 
     Returns:
-        dict[float, float, float]: Monthly repayment, total repayment amount, total interest paid
+        dict[str, float]: JSON format: Monthly repayment, total repayment amount, total interest paid
     """
     
     if principal <= 0:
