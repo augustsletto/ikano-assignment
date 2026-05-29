@@ -33,7 +33,6 @@ Open http://localhost:8000 for the web UI, or http://localhost:8000/docs for the
 # make sure docker desktop is running
 docker compose up --build
 
-
 ```
 
 Open http://localhost:8000/
